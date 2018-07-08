@@ -46,6 +46,7 @@ void prepare_input(std::vector<std::string>& input, char * filename) {
 			}
 			if (input[i][j] == ' ') {
 				input[i].erase(input[i].begin() + j);
+				j--;
 			}
 		}
 		if (input[i].empty()) {

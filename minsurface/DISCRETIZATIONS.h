@@ -456,7 +456,10 @@ public:
 		DISCRETIZATION_CORE<T>::solve_core();
 
 		if (DISCRETIZATION_CORE<T>::input()[0].size() == 1) {
+			std::cout << "OUTPUTTING ." << std::flush;
+			double timestamp = omp_get_wtime();
 			DISCRETIZATION_CORE<T>::output();
+			std::cout << ".. TOOK (" << omp_get_wtime() - timestamp << "s)" << std::endl;
 			return;
 		}
 		if (!std::isdigit(static_cast<unsigned char>(DISCRETIZATION_CORE<T>::input()[0][1]))) {
@@ -504,7 +507,7 @@ private:
 		A *= 1 / (h() * h());
 
 		Eigen::BiCGSTAB<MT> solver;
-		solver.setTolerance(10e-3);
+		solver.setTolerance(10e-7);
 		solver.compute((-1)*A);
 		X = solver.solve(R);
 
