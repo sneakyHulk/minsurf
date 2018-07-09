@@ -217,7 +217,7 @@ protected:
 		X = solver.solve((-1)*R);
 		if (X != X) {
 			std::cout << "LAST "; NEWTON<T>::output();
-			throw std::string("STOPPING NEWTON BECAUSE OF NON CONVERGENCE! TRY DIFFERENT INITIAL VALUES OR METHOD!");
+			throw std::string("STOPPING NEWTON BECAUSE OF NON CONVERGENCE! TRY DIFFERENT BOUNDARY VALUES OR METHOD!");
 		}
 	}
 };
@@ -510,6 +510,10 @@ private:
 		solver.setTolerance(10e-7);
 		solver.compute((-1)*A);
 		X = solver.solve(R);
+		if (X != X) {
+			std::cout << "LAST "; NEWTON<T>::output();
+			throw std::string("STOPPING LAPLACE BECAUSE OF NON CONVERGENCE! TRY DIFFERENT BOUNDARY VALUES OR METHOD!");
+		}
 
 		Z = X;
 	}

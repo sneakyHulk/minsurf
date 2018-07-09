@@ -44,7 +44,7 @@ void prepare_input(std::vector<std::string>& input, char * filename) {
 					}
 				}
 			}
-			if (input[i][j] == ' ') {
+			if (input[i][j] == ' ' || input[i][j] == '\r') {
 				input[i].erase(input[i].begin() + j);
 				j--;
 			}
@@ -79,11 +79,6 @@ int main(int argc, char *argv[]) {
 				throw std::string("DATA TYPE NOT ENTERED!");
 			}
 			std::string type = input[1];
-			for (unsigned int i = 0; i < type.size(); i++) {
-				if (type[i] == '\r') {
-					type.erase(i);
-				}
-			}
 
 			if (type == "float") {
 				if (D == 2) {
@@ -246,10 +241,9 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	else {
-		std::cout << "MISSING INPUT FILE, TRY: sudo ./main config.txt OR sudo ./main config.txt output.vtp" << std::endl;
+		std::cout << "MISSING INPUT FILE, TRY: ./main <config-FILE> OR sudo ./main <config-FILE> <output-FILE>" << std::endl;
 	}
 
 	std::cout << "TOTAL TIME: \t" << omp_get_wtime() - timestamp << std::endl;
-	//0.42752
 	return 0;
 }
