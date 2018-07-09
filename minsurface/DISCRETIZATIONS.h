@@ -511,7 +511,7 @@ private:
 		solver.compute((-1)*A);
 		X = solver.solve(R);
 		if (X != X) {
-			std::cout << "LAST "; NEWTON<T>::output();
+			DISCRETIZATION_CORE<T>::output();
 			throw std::string("STOPPING LAPLACE BECAUSE OF NON CONVERGENCE! TRY DIFFERENT BOUNDARY VALUES OR METHOD!");
 		}
 

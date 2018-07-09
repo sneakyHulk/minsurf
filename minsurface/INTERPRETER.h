@@ -806,6 +806,15 @@ public:
 		}
 		
 		totalresult = std::static_pointer_cast<SCALAR, TOKEN>(evaluationStack.top())->getSCALAR();
+		if (totalresult != totalresult) {
+			std::stringstream tmp;
+			tmp << "RESULT IS: '" << totalresult << "', FOR FUNCTION: '";
+			for (unsigned int i = 0; i < tokens.size(); i++) {
+				tmp << *(tokens[i]) << " ";
+			}
+			tmp << "'!";
+			error(tmp.str());
+		}
 		return totalresult;
 	}
 
