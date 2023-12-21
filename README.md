@@ -1,0 +1,1 @@
+Dokumentation siehe minsurf_Analyse_Entwurf.pdf
